@@ -6,9 +6,10 @@ set :public_folder, "public"
 set :views, "views"
 
 tags = Hash.new(0)
-
+tags.merge!(YAML::load_file "hashmap.yml")
 
 get '/' do 
+	puts tags
     erb :index
 end
 
@@ -29,18 +30,16 @@ post '/create' do
 		hashmap = {url => colour}
 		tags.merge!(hashmap)
 		html_button = "<button style='width:100;height:100;background-color:#{colour}'"  + 'onClick="window.location='+ "'" + url + "'"+ '"' + "><b>##{colour}</b></button>"
+		File.open("hashmap.yml", "w") do |file|
+  			file.write tags.to_yaml
+  		end
 	else
 		colour = tags[url]
 		html_button = "<button style='width:100;height:100;background-color:#{colour}'"  + 'onClick="window.location='+ "'" + url + "'"+ '"' + "><b>##{colour}</b></button>"
 	end
 
+	
+
 	erb :create, :locals => {:button => html_button, :url => url}
 end 
 
-def loadHash()
-
-end
-
-def saveHash()
-	
-end
