@@ -9,7 +9,6 @@ tags = Hash.new(0)
 tags.merge!(YAML::load_file "hashmap.yml")
 
 get '/' do 
-	puts tags
     erb :index
 end
 
@@ -37,8 +36,6 @@ post '/create' do
 		colour = tags[url]
 		html_button = "<button style='width:100;height:100;background-color:#{colour}'"  + 'onClick="window.location='+ "'" + url + "'"+ '"' + "><b>##{colour}</b></button>"
 	end
-
-	
 
 	erb :create, :locals => {:button => html_button, :url => url}
 end 
