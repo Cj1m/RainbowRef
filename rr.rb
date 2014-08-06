@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'yaml'
 
 set :port, 8080
 set :public_folder, "public"
@@ -35,3 +36,11 @@ post '/create' do
 
 	erb :create, :locals => {:button => html_button, :url => url}
 end 
+
+def loadHash()
+
+end
+
+def saveHash()
+	
+end
