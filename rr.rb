@@ -1,5 +1,17 @@
+#!/usr/bin/env ruby
 require 'sinatra'
 require 'yaml'
+
+#SPEED THINGS UP
+class Rack::Handler::WEBrick
+    class << self
+        alias_method :run_original, :run
+    end
+    def self.run(app, options={})
+        options[:DoNotReverseLookup] = true
+        run_original(app, options)
+    end
+end
 
 set :port, 8080
 set :public_folder, "public"
@@ -8,8 +20,13 @@ set :views, "views"
 tags = Hash.new(0)
 tags.merge!(YAML::load_file "hashmap.yml")
 
+
 get '/' do 
     erb :index
+end
+
+get '/latest' do
+	erb :latest
 end
 
 post '/create' do
