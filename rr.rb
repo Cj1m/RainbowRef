@@ -30,7 +30,8 @@ get '/latest' do
 end
 
 post '/create' do
-	url = params[:url] 
+	url = params[:url]
+	url.downcase!
 	colour = "%06x" % (rand * 0xffffff)
 
 	if url.index("http") != 0
