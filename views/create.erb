@@ -8,14 +8,8 @@
         font-family: 'Lobster', serif;
         font-size: 48px;
 		    background-image: -webkit-linear-gradient(left, #A3A948 0%, #A3A948 8.33%, #EDB92E 8.33%, #EDB92E 16.66%, #F85931 16.66%, #F85931 24.99%, #CE1836 24.99%, #CE1836 33.32%, #009989 33.32%, #009989 41.65%, #A3A948 41.65%, #A3A948 49.98%, #EDB92E 49.98%, #EDB92E 58.31%, #F85931 58.31%, #F85931 66.64%, #CE1836 66.64%, #CE1836 74.97%, #009989 74.97%, #009989 83.3%, #A3A948 83.3%, #A3A948 91.63%, #EDB92E 91.63%, #EDB92E 100%);
-        background-position: 0 -30px;
-        -webkit-transition: all 0.2s linear;
-        transition: all 0.2s linear;
       }
 
-      .body:hover {
-        background-position: 0 0;
-      }
 
     #content {
     font-size: 72px;
@@ -44,6 +38,7 @@
     margin-right: auto ;
     margin-top: 200px;
     text-align: center;
+    opacity: 0;
     }
     </style>
   </head>
@@ -51,7 +46,7 @@
     <div id="content">Rainbow Ref</div>
     <div id="subcontent">A new way to share content</div>
     <div id="subcontent">
-      <form action="/create" method="post">
+      <form action="/create" method="post" onClick="fadeOut()">
         <input type="text" placeholder="http://mywebsite.com" name="url">
         <input type="submit">
       </form>
@@ -60,5 +55,24 @@
       <%= button %>
       <p>Button for <%= url %> successfully created!</p>
     </div>
+
+    <script type="text/javascript">
+        var element = document.getElementById("buttoncontent");
+        var duration = 1500;
+        
+        function SetOpa(Opa) {
+          element.style.opacity = Opa;
+          element.style.MozOpacity = Opa;
+          element.style.KhtmlOpacity = Opa;
+          element.style.filter = 'alpha(opacity=' + (Opa * 100) + ');';
+        }
+
+          
+        for (i = 0; i <= 1; i += 0.01) {
+          setTimeout("SetOpa(" + i +")", i * duration);
+        }
+            
+
+        </script>
   </body>
 </html>
