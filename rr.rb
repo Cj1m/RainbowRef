@@ -32,6 +32,8 @@ end
 post '/create' do
 	url = params[:url]
 	url.downcase!
+	url.gsub!(' ', '')
+
 	colour = "%06x" % (rand * 0xffffff)
 
 	if url.index("http") != 0
